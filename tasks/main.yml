@@ -1,12 +1,22 @@
 ---
-- name: Add backports repository
-  apt_repository:
-    repo: deb http://deb.debian.org/debian {{ ansible_distribution_release }}-backports main
+- name: Add backports repository and update the package cache
+  block:
+    - name: Add backports repository
+      apt_repository:
+        repo: >
+          deb http://deb.debian.org/debian
+          {{ ansible_distribution_release }}-backports main
+      when:
+        # Bullseye is currently Debian testing, so it has no backports
+        # repo available
+        - ansible_distribution_major_version != "11"
+        - ansible_distribution_major_version != "testing/release"
+        - ansible_distribution_release != "bullseye"
+        - ansible_distribution_release != "n/a"
+
+    - name: Update the package cache
+      apt:
+        force_apt_get: yes
+        update_cache: yes
   when:
     - ansible_distribution == "Debian"
-    # Bullseye is currently Debian testing, so it has no backports
-    # repo available
-    - ansible_distribution_major_version != "11"
-    - ansible_distribution_major_version != "testing/release"
-    - ansible_distribution_release != "bullseye"
-    - ansible_distribution_release != "n/a"
