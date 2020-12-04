@@ -19,5 +19,7 @@
       apt:
         force_apt_get: yes
         update_cache: yes
+      tags:
+        - molecule-idempotence-notest
   when:
     - ansible_distribution == "Debian"
