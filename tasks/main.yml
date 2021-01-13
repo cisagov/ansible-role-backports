@@ -15,7 +15,6 @@
     - name: Add backports repository
       apt_repository:
         repo: "{{ source_list_entry | format(ansible_distribution_release) }}"
-      when: ansible_distribution_release in supported_releases
 
     - name: Update the package cache
       apt:
@@ -23,3 +22,4 @@
         update_cache: yes
       tags:
         - molecule-idempotence-notest
+  when: ansible_distribution_release in supported_releases
