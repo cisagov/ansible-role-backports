@@ -18,7 +18,7 @@ def test_backports(host):
 
     # The backports package repo should be present for any Debian
     # other than Debian testing, which is currently bullseye.
-    if distribution == "debian":
+    if distribution == "debian" or distribution == "ubuntu":
         cmd = host.run("apt-cache policy")
         assert cmd.rc == 0
 

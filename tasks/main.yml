@@ -1,19 +1,21 @@
 ---
+- name: Load var file with package names based on the OS type
+  include_vars: "{{ lookup('first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ ansible_distribution }}_{{ ansible_distribution_release }}.yml"
+        - "{{ ansible_distribution }}.yml"
+        - "{{ ansible_os_family }}.yml"
+      paths:
+        - "{{ role_path }}/vars"
+
 - name: Add backports repository and update the package cache
   block:
     - name: Add backports repository
       apt_repository:
-        repo: >
-          deb http://deb.debian.org/debian
-          {{ ansible_distribution_release }}-backports main
-      when:
-        # Bullseye is currently Debian testing, so it has no backports
-        # repo available
-        - ansible_distribution_major_version != "11"
-        - ansible_distribution_major_version|lower != "testing/release"
-        - ansible_distribution_release|lower != "bullseye"
-        - ansible_distribution_release|lower != "n/a"
-        - ansible_distribution_release|lower != "na"
+        repo: "{{ source_list_entry | format(ansible_distribution_release) }}"
+      when: ansible_distribution_release in supported_releases
 
     - name: Update the package cache
       apt:
@@ -21,5 +23,3 @@
         update_cache: yes
       tags:
         - molecule-idempotence-notest
-  when:
-    - ansible_distribution == "Debian"
