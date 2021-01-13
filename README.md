@@ -6,7 +6,9 @@
 
 This Ansible role adds the [backports](https://backports.debian.org/)
 [package repositories](https://backports.debian.org/Instructions/) for
-Debian.  It does nothing if the underlying OS is not Debian Linux.
+supported Debian releases.  It does the same for
+[Ubuntu backports](https://help.ubuntu.com/community/UbuntuBackports) with
+supported releases.
 
 ## Requirements ##
 
