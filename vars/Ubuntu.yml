@@ -1,0 +1,9 @@
+---
+# The Ubuntu releases that have backports repositories
+source_list_entry: "deb http://archive.ubuntu.com/ubuntu %s-backports main
+  restricted universe multiverse"
+
+supported_releases:
+  - xenial
+  - bionic
+  - focal

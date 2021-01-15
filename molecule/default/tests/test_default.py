@@ -16,13 +16,16 @@ def test_backports(host):
     distribution = host.system_info.distribution
     codename = host.system_info.codename
 
-    # The backports package repo should be present for any Debian
-    # other than Debian testing, which is currently bullseye.
-    if distribution == "debian":
+    supported_distributions = ["debian", "ubuntu"]
+    unsupported_releases = ["bullseye"]
+
+    # The backports package repo should be present for any Debian or Ubuntu
+    # release other than those found in `unsupported_releases`.
+    if distribution in supported_distributions:
         cmd = host.run("apt-cache policy")
         assert cmd.rc == 0
 
-        if codename != "bullseye":
+        if codename not in unsupported_releases:
             assert f"{codename}-backports" in cmd.stdout
         else:
             assert f"{codename}-backports" not in cmd.stdout
