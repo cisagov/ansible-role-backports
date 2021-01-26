@@ -13,6 +13,9 @@ galaxy_info:
   # 2.10 or newer.
   min_ansible_version: 2.10
   platforms:
+    - name: Amazon
+      versions:
+        - 2
     - name: Debian
       versions:
         - stretch
@@ -21,6 +24,10 @@ galaxy_info:
         # Debian Testing:
         # https://www.kali.org/docs/policy/kali-linux-relationship-with-debian
         - bullseye
+    - name: Fedora
+      versions:
+        - 32
+        - 33
     - name: Ubuntu
       versions:
         - xenial
