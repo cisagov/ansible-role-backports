@@ -1,23 +1,24 @@
 ---
 - name: Load var file with package names based on the OS type
-  include_vars: "{{ lookup('first_found', params) }}"
+  ansible.builtin.include_vars: "{{ lookup('first_found', params) }}"
   vars:
     params:
       files:
         - "{{ ansible_distribution }}_{{ ansible_distribution_release }}.yml"
         - "{{ ansible_distribution }}.yml"
         - "{{ ansible_os_family }}.yml"
+        - Default.yml
       paths:
         - "{{ role_path }}/vars"
 
 - name: Add backports repository and update the package cache
   block:
     - name: Add backports repository
-      apt_repository:
+      ansible.builtin.apt_repository:
         repo: "{{ source_list_entry | format(ansible_distribution_release) }}"
 
     - name: Update the package cache
-      apt:
+      ansible.builtin.apt:
         force_apt_get: yes
         update_cache: yes
       tags:
