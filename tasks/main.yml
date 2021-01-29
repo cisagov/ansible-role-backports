@@ -23,4 +23,4 @@
         update_cache: yes
       tags:
         - molecule-idempotence-notest
-  when: ansible_distribution_release in {{ supported_releases | default([]) }}
+  when: ansible_distribution_release in supported_releases | default([])
