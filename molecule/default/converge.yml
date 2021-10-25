@@ -1,5 +1,7 @@
 ---
 - name: Converge
   hosts: all
-  roles:
-    - role: ansible-role-backports
+  tasks:
+    - name: Include ansible-role-backports
+      ansible.builtin.include_role:
+        name: ansible-role-backports
