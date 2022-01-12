@@ -17,7 +17,7 @@ def test_backports(host):
     codename = host.system_info.codename
 
     supported_distributions = ["debian", "ubuntu"]
-    unsupported_releases = ["bullseye"]
+    unsupported_releases = ["bookworm"]
 
     # The backports package repo should be present for any Debian or Ubuntu
     # release other than those found in `unsupported_releases`.
