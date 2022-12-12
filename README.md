@@ -1,8 +1,7 @@
 # ansible-role-backports #
 
 [![GitHub Build Status](https://github.com/cisagov/ansible-role-backports/workflows/build/badge.svg)](https://github.com/cisagov/ansible-role-backports/actions)
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/cisagov/ansible-role-backports.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cisagov/ansible-role-backports/alerts/)
-[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/cisagov/ansible-role-backports.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cisagov/ansible-role-backports/context:python)
+[![CodeQL](https://github.com/cisagov/ansible-role-backports/workflows/CodeQL/badge.svg)](https://github.com/cisagov/ansible-role-backports/actions/workflows/codeql-analysis.yml)
 
 This Ansible role adds the [backports](https://backports.debian.org/)
 [package repositories](https://backports.debian.org/Instructions/) for
@@ -37,8 +36,10 @@ Here's how to use it in a playbook:
 - hosts: debian
   become: yes
   become_method: sudo
-  roles:
-    - backports
+  tasks:
+    - name: Add backports repository
+      ansible.builtin.include_role:
+        name: backports
 ```
 
 ## Contributing ##
