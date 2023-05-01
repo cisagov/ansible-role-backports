@@ -3,6 +3,5 @@
 source_list_entry: "deb http://deb.debian.org/debian %s-backports main"
 
 supported_releases:
-  - stretch
   - buster
   - bullseye
