@@ -4,6 +4,5 @@ source_list_entry: "deb http://archive.ubuntu.com/ubuntu %s-backports main
 
 # The Ubuntu releases that have backports repositories
 supported_releases:
-  - bionic
   - focal
   - jammy
