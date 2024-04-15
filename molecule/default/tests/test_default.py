@@ -17,11 +17,11 @@ def test_backports(host):
     codename = host.system_info.codename
 
     supported_distributions = ["debian", "ubuntu"]
-    # Trixie does not yet have a backports package repo.
-    unsupported_releases = ["trixie"]
+    # Buster no longer has a backports package repo.
+    unsupported_releases = ["buster"]
 
     # The backports package repo should be present for any Debian or Ubuntu
-    # release other than those found in `unsupported_releases`.
+    # release other than those found in unsupported_releases.
     if distribution in supported_distributions:
         cmd = host.run("apt-cache policy")
         assert cmd.rc == 0

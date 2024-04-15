@@ -3,6 +3,6 @@ source_list_entry: "deb http://deb.debian.org/debian %s-backports main"
 
 # The Debian releases that have backports repositories
 supported_releases:
-  - buster
   - bullseye
   - bookworm
+  - trixie
