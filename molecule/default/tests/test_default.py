@@ -23,7 +23,7 @@ def test_backports(host):
     # The backports package repo should be present for any Debian or Ubuntu
     # release other than those found in unsupported_releases.
     if distribution in supported_distributions:
-        cmd = host.run("apt-cache policy")
+        cmd = host.run("apt update")
         assert cmd.rc == 0
 
         if codename not in unsupported_releases:
