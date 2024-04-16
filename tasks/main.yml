@@ -1,5 +1,5 @@
 ---
-- name: Load var file with package names based on the OS type
+- name: Load var file with default values based on the OS type
   ansible.builtin.include_vars: "{{ lookup('first_found', params) }}"
   vars:
     params:
@@ -11,16 +11,27 @@
       paths:
         - "{{ role_path }}/vars"
 
-- name: Add backports repository and update the package cache
+- name: Add backports repository
   when: ansible_distribution_release in supported_releases | default([])
   block:
-    - name: Add backports repository
+    - name: Add backports repository (pre-Bookworm)
+      when: ansible_distribution_release not in ["bookworm", "trixie"]
       ansible.builtin.apt_repository:
         repo: "{{ source_list_entry | format(ansible_distribution_release) }}"
-
-    - name: Update the package cache
-      ansible.builtin.apt:
-        force_apt_get: true
-        update_cache: true
-      tags:
-        - molecule-idempotence-notest
+    - name: Add backports repository (Bookworm and later)
+      when: ansible_distribution_release in ["bookworm", "trixie"]
+      block:
+        - name: Install a required prerequisite
+          ansible.builtin.package:
+            name:
+              - python3-debian
+        - name: Add backports repository
+          ansible.builtin.deb822_repository:
+            components:
+              - main
+            name: backports
+            signed_by: /usr/share/keyrings/debian-archive-keyring.gpg
+            suites:
+              - "{{ ansible_distribution_release }}-backports"
+            uris:
+              - http://deb.debian.org/debian
