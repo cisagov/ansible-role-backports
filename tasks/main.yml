@@ -39,3 +39,11 @@
               - "{{ ansible_distribution_release }}-backports"
             uris:
               - http://deb.debian.org/debian
+
+    - name: Update the package cache
+      ansible.builtin.apt:
+        force_apt_get: true
+        update_cache: true
+      tags:
+        - molecule-idempotence-notest
+      when: backports_update_cache

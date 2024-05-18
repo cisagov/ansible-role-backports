@@ -194,6 +194,7 @@ jobs:
           - ubuntu-24-systemd
         scenario:
           - default
+          - update_cache
     steps:
       - id: harden-runner
         name: Harden the runner

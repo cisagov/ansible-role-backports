@@ -13,14 +13,9 @@ None.
 
 ## Role Variables ##
 
-None.
-
-<!--
 | Variable | Description | Default | Required |
 |----------|-------------|---------|----------|
-| optional_variable | Describe its purpose. | `default_value` | No |
-| required_variable | Describe its purpose. | n/a | Yes |
--->
+| backports_update_cache | Indicate if the package cache should be updated after adding the backports repository. | `false` | No |
 
 ## Dependencies ##
 
