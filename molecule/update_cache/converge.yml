@@ -6,4 +6,4 @@
       ansible.builtin.include_role:
         name: ansible-role-backports
       vars:
-        backports_update_cache: true
+        backports_update_cache: false
