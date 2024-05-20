@@ -16,7 +16,7 @@ def test_backports(host):
     distribution = host.system_info.distribution
     codename = host.system_info.codename
 
-    supported_distributions = ["debian", "ubuntu"]
+    supported_distributions = ["debian"]
     # Buster no longer has a backports package repo.
     unsupported_releases = ["buster"]
 
