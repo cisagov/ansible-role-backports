@@ -21,6 +21,7 @@
     - name: Add backports repository (pre-Bookworm)
       when: ansible_distribution_release not in ["bookworm", "trixie"]
       ansible.builtin.apt_repository:
+        filename: backports
         repo: "{{ source_list_entry | format(ansible_distribution_release) }}"
         update_cache: "{{ backports_update_cache }}"
 
