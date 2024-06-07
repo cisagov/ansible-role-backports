@@ -6,3 +6,4 @@ source_list_entry: "deb http://ports.ubuntu.com/ubuntu-ports %s-backports main
 supported_releases:
   - focal
   - jammy
+  - noble
