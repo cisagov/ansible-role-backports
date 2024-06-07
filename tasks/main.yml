@@ -4,9 +4,13 @@
   vars:
     params:
       files:
+        - "{{ ansible_distribution }}_{{ ansible_distribution_release }}_{{ ansible_architecture }}.yml"
         - "{{ ansible_distribution }}_{{ ansible_distribution_release }}.yml"
+        - "{{ ansible_distribution }}_{{ ansible_architecture }}.yml"
         - "{{ ansible_distribution }}.yml"
+        - "{{ ansible_os_family }}_{{ ansible_architecture }}.yml"
         - "{{ ansible_os_family }}.yml"
+        - Default_{{ ansible_architecture }}.yml
         - Default.yml
       paths:
         - "{{ role_path }}/vars"

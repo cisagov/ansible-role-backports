@@ -1,0 +1,8 @@
+---
+source_list_entry: "deb http://ports.ubuntu.com/ubuntu-ports %s-backports main
+  restricted universe multiverse"
+
+# The Ubuntu releases that have backports repositories
+supported_releases:
+  - focal
+  - jammy
