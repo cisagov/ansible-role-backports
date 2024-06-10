@@ -47,7 +47,6 @@
 
         - name: Update the package cache
           ansible.builtin.apt:
-            force_apt_get: true
             update_cache: true
           when:
             - add_backports_repo.changed
