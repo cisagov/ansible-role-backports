@@ -21,7 +21,10 @@
     - name: Add backports repository (pre-Bookworm)
       when: ansible_distribution_release not in ["bookworm", "trixie"]
       ansible.builtin.apt_repository:
+        filename: backports
         repo: "{{ source_list_entry | format(ansible_distribution_release) }}"
+        update_cache: "{{ backports_update_cache }}"
+
     - name: Add backports repository (Bookworm and later)
       when: ansible_distribution_release in ["bookworm", "trixie"]
       block:
@@ -29,6 +32,7 @@
           ansible.builtin.package:
             name:
               - python3-debian
+
         - name: Add backports repository
           ansible.builtin.deb822_repository:
             components:
@@ -39,3 +43,11 @@
               - "{{ ansible_distribution_release }}-backports"
             uris:
               - http://deb.debian.org/debian
+          register: add_backports_repo
+
+        - name: Update the package cache
+          ansible.builtin.apt:
+            update_cache: true
+          when:
+            - add_backports_repo.changed
+            - backports_update_cache

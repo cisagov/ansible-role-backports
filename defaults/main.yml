@@ -1,0 +1,3 @@
+---
+# Indicate if the package cache should be updated after adding the backports repository
+backports_update_cache: true
