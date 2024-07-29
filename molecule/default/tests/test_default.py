@@ -17,8 +17,8 @@ def test_backports(host):
     codename = host.system_info.codename
 
     supported_distributions = ["debian"]
-    # Buster no longer has a backports package repo.
-    unsupported_releases = ["buster"]
+    # List any unsupported releases here
+    unsupported_releases = []
 
     # The backports package repo should be present for any Debian or Ubuntu
     # release other than those found in unsupported_releases.
