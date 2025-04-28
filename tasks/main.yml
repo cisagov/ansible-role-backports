@@ -4,7 +4,9 @@
   vars:
     params:
       files:
-        - "{{ ansible_distribution }}_{{ ansible_distribution_release }}_{{ ansible_architecture }}.yml"
+        - >-
+          {{ ansible_distribution }}_{{ ansible_distribution_release }}_{{
+          ansible_architecture }}.yml
         - "{{ ansible_distribution }}_{{ ansible_distribution_release }}.yml"
         - "{{ ansible_distribution }}_{{ ansible_architecture }}.yml"
         - "{{ ansible_distribution }}.yml"
