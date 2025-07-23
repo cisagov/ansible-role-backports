@@ -4,3 +4,4 @@ source_list_entry: deb http://archive.debian.org/debian %s-backports main
 # The Debian releases that have backports repositories
 supported_releases:
   - buster
+  - bullseye
