@@ -21,14 +21,14 @@
   when: ansible_distribution_release in supported_releases | default([])
   block:
     - name: Add backports repository (pre-Bookworm)
-      when: ansible_distribution_release not in ["bookworm", "trixie"]
+      when: ansible_distribution_release in ["buster", "bullseye"]
       ansible.builtin.apt_repository:
         filename: backports
         repo: "{{ source_list_entry | format(ansible_distribution_release) }}"
         update_cache: "{{ backports_update_cache }}"
 
     - name: Add backports repository (Bookworm and later)
-      when: ansible_distribution_release in ["bookworm", "trixie"]
+      when: ansible_distribution_release not in ["buster", "bullseye"]
       block:
         - name: Install a required prerequisite
           ansible.builtin.package:
