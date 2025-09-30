@@ -6,3 +6,4 @@ supported_releases:
   - bullseye
   - bookworm
   - trixie
+  - forky
