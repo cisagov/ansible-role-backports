@@ -1,6 +1,7 @@
 # ansible-role-backports #
 
 [![GitHub Build Status](https://github.com/cisagov/ansible-role-backports/workflows/build/badge.svg)](https://github.com/cisagov/ansible-role-backports/actions)
+[![License](https://img.shields.io/github/license/cisagov/ansible-role-backports)](https://spdx.org/licenses/)
 [![CodeQL](https://github.com/cisagov/ansible-role-backports/workflows/CodeQL/badge.svg)](https://github.com/cisagov/ansible-role-backports/actions/workflows/codeql-analysis.yml)
 
 This Ansible role adds the [backports](https://backports.debian.org/)
