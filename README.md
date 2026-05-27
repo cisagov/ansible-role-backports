@@ -15,7 +15,7 @@ None.
 ## Role Variables ##
 
 | Variable | Description | Default | Required |
-|----------|-------------|---------|----------|
+| -------- | ----------- | ------- | -------- |
 | backports_update_cache | Indicate if the package cache should be updated after adding the backports repository. | `true` | No |
 
 ## Dependencies ##
